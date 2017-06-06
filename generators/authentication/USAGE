@@ -1,0 +1,5 @@
+Description:
+    Generator used to generate api authentication to models
+
+Example:
+    rails generate authentication Model
