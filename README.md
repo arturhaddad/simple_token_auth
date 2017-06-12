@@ -27,7 +27,7 @@ rails g devise MODEL
 
 * Inside lib do:
 ```
-wget https://github.com/rizel10/simple_token_auth/archive/master.zip && unzip master.zip 'simple_token_auth-master/generators/*' && rsync -av simple_token_auth-master/generators ./ && rm -rf master.zip && rm -rf simple_token_auth-master
+wget https://github.com/arturhaddad/simple_token_auth/archive/master.zip && unzip master.zip 'simple_token_auth-master/generators/*' && rsync -av simple_token_auth-master/generators ./ && rm -rf master.zip && rm -rf simple_token_auth-master
 ```
 
 * Generate authentication for Devise models
