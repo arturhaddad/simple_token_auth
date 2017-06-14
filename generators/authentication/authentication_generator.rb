@@ -43,14 +43,16 @@ class AuthenticationGenerator < Rails::Generators::Base
     out_file.puts(user_controller_code)
     out_file.close
 
-    # Adds alias method to sessions controller
-    replace("app/controllers/api/v1/auth/sessions_controller.rb", "alias methods") do |match|
-      "#{match}\n#{alias_methods}"
-    end
-
     # Adds protect_from_forgery to application controller
     gsub_file 'app/controllers/application_controller.rb', 'class ApplicationController < ActionController::API', 'class ApplicationController < ActionController::Base'
-    sub_file 'app/controllers/application_controller.rb', search = "class ApplicationController < ActionController::Base", "#{search}\n\n  protect_from_forgery with: :exception\n"
+    if File.readlines("app/controlers/application_controller.rb").grep(/protect_from_forgery/).size <= 0
+      sub_file 'app/controllers/application_controller.rb', search = "class ApplicationController < ActionController::Base", "#{search}\n\n  protect_from_forgery with: :exception\n"
+    end
+
+    # Sets config.action_mailer
+    if File.readlines("config/environments/development.rb").grep(/config.action_mailer/).size <= 0
+      sub_file 'config/environments/development.rb', search = "Rails.application.configure do", "#{search}\n\n  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }\n"
+    end
 
     # Adds middleware Flash, enable_dependency_loading, autoload_paths from lib
     if File.readlines("config/application.rb").grep(/dependency/).size <= 0
