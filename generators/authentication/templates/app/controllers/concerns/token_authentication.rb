@@ -48,7 +48,7 @@ module TokenAuthentication
 
 	def resource_class
 		r_class = request.headers["resource-type"]
-    r_class ||= "user"
+    r_class ||= request.original_url.split("/")[5].singularize
 		r_class.underscore.camelize.constantize
 	end
 
