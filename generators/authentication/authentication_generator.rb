@@ -89,10 +89,6 @@ RUBY
 <<RUBY
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      namespace :auth do
-        post 'sign_in' => 'sessions#create'
-        delete 'sign_out' => 'sessions#destroy'
-      end
       # models auth
     end
   end
@@ -110,6 +106,8 @@ RUBY
           namespace :auth do
             put 'omniauth/:provider' => 'omniauth#all'
             patch 'omniauth/:provider' => 'omniauth#all'
+            post 'sign_in' => 'sessions#create'
+            delete 'sign_out' => 'sessions#destroy'
           end
           post :reset_password
         end
