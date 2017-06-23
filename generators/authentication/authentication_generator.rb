@@ -45,7 +45,7 @@ class AuthenticationGenerator < Rails::Generators::Base
 
     # Adds protect_from_forgery to application controller
     gsub_file 'app/controllers/application_controller.rb', 'class ApplicationController < ActionController::API', 'class ApplicationController < ActionController::Base'
-    if File.readlines("app/controlLers/application_controller.rb").grep(/protect_from_forgery/).size <= 0
+    if File.readlines("app/controllers/application_controller.rb").grep(/protect_from_forgery/).size <= 0
       sub_file 'app/controllers/application_controller.rb', search = "class ApplicationController < ActionController::Base", "#{search}\n\n  protect_from_forgery with: :exception\n"
     end
 
