@@ -194,12 +194,12 @@ RUBY
     private
 
       def sign_up_params
-        require_parameters([:name, :email, :password])
-        params.permit(:name, :email, :password)
+        require_parameters([:email, :password])
+        params.permit(:email, :password)
       end
 
       def update_params
-        params.permit(:name, :email)
+        params.permit(:email)
       end
 
       def password_params
