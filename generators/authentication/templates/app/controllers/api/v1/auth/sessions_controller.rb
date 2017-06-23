@@ -1,4 +1,4 @@
-class Api::V1::Authentication::SessionsController < Api::V1::BaseController
+class Api::V1::Auth::SessionsController < Api::V1::BaseController
   before_action :authenticate_user!, only: [:destroy]
 
 
