@@ -4,7 +4,6 @@ class Api::V1::Auth::SessionsController < Api::V1::BaseController
 
   def create
     require_parameters([:auth, :password])
-    request.headers["resource-type"] = params[:action]
     sign_in(params[:auth], params[:password], { device_id: params[:device_id], device_os: params[:device_os] })
     render json: current_user
   end
