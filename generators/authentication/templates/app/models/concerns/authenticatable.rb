@@ -69,10 +69,6 @@ module Authenticatable
 		def sign_in(auth_value, password, metadata={})
 			resource = find_by_auth_values(auth_value)
 			unless resource.nil?
-				if attribute_names.include? "approved"
-					return nil unless resource.approved?
-				end
-
 				if resource.valid_password? password
 					resource.created_auth = resource.authentications.create!(metadata: metadata)
 					return resource
