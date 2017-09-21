@@ -1,7 +1,7 @@
 class Api::V1::BaseController < ApplicationController
 	protect_from_forgery with: :null_session
 
-	# include Pundit
+	include Pundit
 	include ResourceLoader
 	include TokenAuthentication
 
@@ -25,9 +25,9 @@ class Api::V1::BaseController < ApplicationController
     render json: { errors: ["Unauthorized"] }, status: :unauthorized
   end
 
-	# rescue_from Pundit::NotAuthorizedError do |exception|
-	# 	render json: { errors: ["Forbidden"] }, status: :forbidden
-	# end
+	rescue_from Pundit::NotAuthorizedError do |exception|
+		render json: { errors: ["Forbidden"] }, status: :forbidden
+	end
 
 	rescue_from ActiveRecord::RecordInvalid do |exception|
     errors = exception.to_s.split(', ')
@@ -39,10 +39,10 @@ class Api::V1::BaseController < ApplicationController
 		required_params.map { |p| missing_params << p unless params.has_key? p }
 		raise ActionController::ParameterMissing.new(missing_params) if missing_params.any?
 	end
-	#
-	# def pundit_user
-  #   { user: current_user, parameters: params }
-	# end
+	
+	def pundit_user
+    current_user
+	end
 
 	private
 

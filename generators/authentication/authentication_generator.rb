@@ -155,26 +155,26 @@ RUBY
 
     # CRUDs
     def create
-      @user = #{class_camelized}.create!(sign_up_params)
-      bypass_authenticate(@user)
-      render json: @user
+      @current_resource = #{class_camelized}.create!(sign_up_params)
+      bypass_authenticate(@current_resource)
+      render json: @current_resource
     end
 
     def update
-      authorize @user
-      @user.update!(update_params)
-      render json: @user
+      authorize @current_resource
+      @current_resource.update!(update_params)
+      render json: @current_resource
     end
 
     def show
-      authorize @user
-      render json: @user
+      authorize @current_resource
+      render json: @current_resource
     end
 
     # Custom actions
     def password
-      authorize @user
-      @user.update_with_password!(password_params)
+      authorize @current_resource
+      @current_resource.update_with_password!(password_params)
     end
 
     def reset_password
@@ -185,7 +185,7 @@ RUBY
 
     def register_device
       require_parameters([:device_id, :device_os])
-      authorize @user
+      authorize @current_resource
       current_user.register_device(request.headers["client"], params[:device_id], params[:device_os])
       # No Content
     end
