@@ -1,7 +1,8 @@
 # README
 
-* Install [Devise](https://github.com/plataformatec/devise)
+* Add gems [Pundit](https://github.com/elabs/pundit) and [Devise](https://github.com/plataformatec/devise) to Gemfile
 ```
+gem 'pundit'
 gem 'devise'
 ```
 
@@ -10,8 +11,9 @@ gem 'devise'
 bundle
 ```
 
-* Run the generator
+* Install gems
 ```
+rails g pundit:install
 rails g devise:install
 ```
 
