@@ -68,7 +68,7 @@ rails db:migrate
 * Select **/plus.login** and **/plus.me** and click in **Authorize API**
 * Login, allow permissions
 * In Step 2 click in **Exchange authorization code for tokens**
-* Copy generated *id_token*
+* Copy generated **id_token** (important: it's the *id_token*, not *access_token*)
 
 #### Login through API
 
