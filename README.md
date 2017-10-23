@@ -1,5 +1,9 @@
 # README
 
+Rails API authenticator. Originally created by [Lucas Rizel](https://github.com/rizel10)
+
+## Instructions
+
 * Add gems [Pundit](https://github.com/elabs/pundit) and [Devise](https://github.com/plataformatec/devise) to Gemfile
 ```
 gem 'pundit'
