@@ -31,7 +31,7 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 rails g devise MODEL
 ```
 
-* Inside lib do:
+* Inside `lib` folder __(important, it must be executed in *lib* folder)__ execute:
 ```
 wget https://github.com/arturhaddad/simple_token_auth/archive/master.zip && unzip master.zip 'simple_token_auth-master/generators/*' && rsync -av simple_token_auth-master/generators ./ && rm -rf master.zip && rm -rf simple_token_auth-master
 ```
